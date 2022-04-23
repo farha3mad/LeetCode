@@ -1,0 +1,23 @@
+//Given two strings ransomNote and magazine, return true if ransomNote can be constructed from magazine and false otherwise.
+
+int canConstruct(char * ransomNote, char * magazine){
+    int j,i;
+    for(i=0;i<strlen(ransomNote);i++)
+    {
+        int flag =0;
+        for(j=0;j<strlen(magazine);j++)
+        {
+            if(ransomNote[i]==magazine[j])
+            {
+                flag =1; 
+                magazine[j] ='0'; //to prevent including the same letter more than once.
+                break;
+            }
+        }
+        if(flag != 1){
+        //if any letter in ransomNote is not there in magazine return false.
+            return 0;
+        }
+    }
+        return 1;
+}
