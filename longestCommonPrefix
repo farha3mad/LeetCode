@@ -1,0 +1,46 @@
+/***Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string "". ***/
+
+char arr[200];
+char * longestCommonPrefix(char ** strs, int strsSize){
+    int h=0;
+    while(arr[h] != '\0')
+    {
+        arr[h] = '\0';
+        h++;
+    }
+    int i=0,j=strsSize-1,min=strlen(strs[0]),flag=0;
+   
+    if(strs[0] == "")
+        return "";
+    
+    if(strsSize==1)
+        return *strs;
+   
+    for(i=0;i<strsSize;i++)
+    {
+        if(strlen(strs[i]) < min)
+            min = strlen(strs[i]);
+    }
+    
+    for(i=0;i<min;i++)
+    {
+        flag =0;
+        j=strsSize-1;
+        while(j>0)
+        {
+            if(strs[0][i] != strs[j][i] )
+                flag=1;
+                
+            --j;
+        }
+        if(i==0 && flag==1)
+            return "";
+        
+        if(flag == 0)
+            arr[i] = strs[0][i];
+        if(flag == 1)
+            break;
+    }
+    return arr;
+
+}
