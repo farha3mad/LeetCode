@@ -1,0 +1,28 @@
+/**********Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. **********/
+
+int removeElement(int* nums, int numsSize, int val)
+{    
+    int i,j =0,arr[100];
+    int h =0;
+    for(i=numsSize-1;i>=0;i--)
+    {
+        if(nums[i] == val)
+        {
+            arr[j] = i;  /*array of positions of every val duplicate*/
+            j++;   /*The number of val duplicates  */
+        }
+    }
+    int new_size = numsSize - j;   /*size of array after removing */
+    while(j > 0)
+    {
+      
+        for(i=arr[j-1]-h;i<numsSize-1;i++)
+        {
+            nums[i] = nums[i+1];  /*shifting the elements to remove val duplicates*/
+        }
+        h++;   /*variable to edit the position of the val duplicates after each removal*/
+        numsSize--;
+        j--;   
+    }
+    return (new_size);
+}
