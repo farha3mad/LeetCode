@@ -1,0 +1,57 @@
+bool isValid(char * s){
+    //less than 2 means there are only one open or closed bracket
+    if(strlen(s)<2)
+        return 0;
+    
+    char *stack = (char *)malloc(strlen(s) * sizeof(char));
+    int j=0,i;
+    for(i=0;i<strlen(s);i++)
+    {
+        switch(s[i])
+        {
+            case '(':
+            case '{':
+            case '[':
+                stack[j] = s[i];
+                j++;
+                break;
+            case ')':
+                if(j>0 && stack[j-1]=='(')
+                {
+                    j--;    
+                }
+                else
+                {
+                    return 0;
+                }
+                break;   
+            case '}':
+                if(j>0 && stack[j-1]=='{')
+                {
+                    j--;    
+                }
+                else
+                {
+                    return 0;
+                }
+                break; 
+            case ']':
+                if(j>0 && stack[j-1]=='[')
+                {
+                    j--;    
+                }
+                else
+                {
+                    return 0;
+                }
+                break; 
+            default:
+            break;
+        }
+    }
+    //still Open brackets not closed
+    if(j>0)
+        return 0;
+    
+     return 1;  
+}
